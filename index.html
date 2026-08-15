@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SDN 2 Gumay Ulu</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      background: #f5f9ff;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0756a3;
+      padding: 15px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+
+    .logo {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ffd43b;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #ffd43b;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 50px 20px;
+      background:
+        linear-gradient(rgba(0,70,140,.75), rgba(0,45,100,.8)),
+        url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffd43b;
+      color: #222;
+      padding: 13px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    /* SECTION */
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #0756a3;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    /* PROFIL */
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .profile img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.15);
+    }
+
+    .profile h3 {
+      color: #0756a3;
+      margin-bottom: 15px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+
+    .card .icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #0756a3;
+      margin-bottom: 10px;
+    }
+
+    /* BERITA */
+    .news-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 20px;
+    }
+
+    /* GALERI */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* PPDB */
+    .ppdb {
+      background: linear-gradient(135deg, #0756a3, #0b7bd8);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      padding: 50px 20px;
+    }
+
+    .ppdb h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    /* KONTAK */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .contact-box h3 {
+      color: #0756a3;
+      margin-bottom: 15px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #063b72;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer span {
+      color: #ffd43b;
+    }
+
+    /* MOBILE */
+    @media(max-width: 768px) {
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .profile,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 50px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      SDN 2 <span>GUMAY ULU</span>
+    </div>
+
+    <ul>
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#kegiatan">Kegiatan</a></li>
+      <li><a href="#berita">Berita</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#ppdb">PPDB</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div>
+      <h1>SDN 2 GUMAY ULU</h1>
+
+      <p>
+        Selamat Datang di Website Resmi<br>
+        SDN 2 Gumay Ulu
+      </p>
+
+      <a href="#profil" class="btn">
+        Jelajahi Sekolah
+      </a>
+    </div>
+  </section>
+
+
+  <!-- PROFIL -->
+  <section id="profil">
+
+    <div class="section-title">
+      <h2>Profil Sekolah</h2>
+      <p>Mengenal lebih dekat SDN 2 Gumay Ulu</p>
+    </div>
+
+    <div class="profile">
+
+      <img
+        src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+        alt="Gedung Sekolah"
+      >
+
+      <div>
+        <h3>SDN 2 Gumay Ulu</h3>
+
+        <p>
+          Selamat datang di website resmi SDN 2 Gumay Ulu.
+          Website ini menjadi media informasi sekolah bagi
+          peserta didik, orang tua, guru, dan masyarakat.
+        </p>
+
+        <br>
+
+        <p>
+          Kami berkomitmen memberikan pendidikan yang berkualitas
+          serta membentuk peserta didik yang cerdas, berkarakter,
+          berakhlak dan memiliki semangat untuk meraih prestasi.
+        </p>
+
+        <br>
+
+        <p>
+          <b>Nama Sekolah:</b> SDN 2 Gumay Ulu
+        </p>
+
+        <p>
+          <b>Kepala Sekolah:</b> Akan diisi
+        </p>
+
+        <p>
+          <b>NPSN:</b> Akan diisi
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- KEGIATAN -->
+  <section id="kegiatan">
+
+    <div class="section-title">
+      <h2>Kegiatan Sekolah</h2>
+      <p>Berbagai kegiatan untuk mengembangkan potensi siswa</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">📚</div>
+        <h3>Pembelajaran</h3>
+        <p>
+          Kegiatan pembelajaran yang aktif, kreatif,
+          dan menyenangkan bagi peserta didik.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚽</div>
+        <h3>Olahraga</h3>
+        <p>
+          Mengembangkan kesehatan, kebugaran,
+          kerja sama dan sportivitas siswa.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>Seni & Kreativitas</h3>
+        <p>
+          Mendorong siswa mengembangkan bakat,
+          kreativitas dan kemampuan berkarya.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- BERITA -->
+  <section id="berita">
+
+    <div class="section-title">
+      <h2>Berita & Informasi</h2>
+      <p>Informasi terbaru dari sekolah</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="news-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80"
+          alt="Kegiatan sekolah"
+        >
+
+        <div class="news-content">
+
+          <h3>Selamat Datang di Website Sekolah</h3>
+
+          <p>
+            Website SDN 2 Gumay Ulu hadir sebagai
+            media informasi sekolah.
+          </p>
+
+        </div>
+      </div>
+
+
+      <div class="news-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80"
+          alt="Siswa sekolah"
+        >
+
+        <div class="news-content">
+
+          <h3>Kegiatan Peserta Didik</h3>
+
+          <p>
+            Berbagai kegiatan sekolah akan ditampilkan
+            di halaman berita ini.
+          </p>
+
+        </div>
+      </div>
+
+
+      <div class="news-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=900&q=80"
+          alt="Pendidikan"
+        >
+
+        <div class="news-content">
+
+          <h3>Informasi Pendidikan</h3>
+
+          <p>
+            Informasi dan pengumuman sekolah
+            dapat ditampilkan di sini.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- GALERI -->
+  <section id="galeri">
+
+    <div class="section-title">
+      <h2>Galeri Sekolah</h2>
+      <p>Dokumentasi kegiatan SDN 2 Gumay Ulu</p>
+    </div>
+
+    <div class="gallery">
+
+      <img
+        src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80"
+        alt="Galeri 1"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+        alt="Galeri 2"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
+        alt="Galeri 3"
+      >
+
+    </div>
+  </section>
+
+
+  <!-- PPDB -->
+  <section id="ppdb">
+
+    <div class="ppdb">
+
+      <h2>PPDB SDN 2 Gumay Ulu</h2>
+
+      <p>
+        Informasi Penerimaan Peserta Didik Baru
+        akan kami tampilkan di halaman ini.
+      </p>
+
+      <br>
+
+      <a href="#kontak" class="btn">
+        Hubungi Sekolah
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- KONTAK -->
+  <section id="kontak">
+
+    <div class="section-title">
+      <h2>Kontak Sekolah</h2>
+      <p>Hubungi SDN 2 Gumay Ulu</p>
+    </div>
+
+    <div class="contact">
+
+      <div class="contact-box">
+
+        <h3>📍 Alamat</h3>
+
+        <p>
+          SDN 2 Gumay Ulu<br>
+          Alamat sekolah akan diisi di sini.
+        </p>
+
+        <br>
+
+        <h3>📞 Telepon / WhatsApp</h3>
+
+        <p>
+          Nomor kontak akan diisi di sini.
+        </p>
+
+      </div>
+
+
+      <div class="contact-box">
+
+        <h3>✉️ Email</h3>
+
+        <p>
+          Email sekolah akan diisi di sini.
+        </p>
+
+        <br>
+
+        <h3>🌐 Media Sosial</h3>
+
+        <p>
+          Facebook / Instagram sekolah
+          akan ditambahkan di sini.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 <span>SDN 2 Gumay Ulu</span>.
+      Semua Hak Dilindungi.
+    </p>
+
+    <p>
+      Website Sekolah Gratis
+    </p>
+
+  </footer>
+
+</body>
+</html>
