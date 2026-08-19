@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sdn2gumayulu.github.io/SDN-2-GUMAY-ULU/sitemap.xml
